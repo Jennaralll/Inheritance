@@ -1,17 +1,22 @@
-var boot = function(){}
-    
-boot.prototype = {
-    Preload: function(){
-        this.game.load.image("loadBar", "assets/loading.png");
+var Game = {};
+
+Game.Boot = =function(game){
+
+};
+
+Game.Boot.prototype = {
+    init: function(){
+        
+        this.input.maxPointers = 1;
+        this.stage.disableVisibilityChange = true;
     },
     
-    create: function(){
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.scale.pageAlignHorizontally = true;
-        this.scale.refresh();
+    preload: function(){
+        this.load.image('preload', 'assets/*insert lancy's titlepage*);
         
-        //starts our preload state
-        this.game.state.start("Preload");
-    }
+    },
     
+    create:function(){
+        this.state.start("Preload");
+    }
 }
