@@ -2,19 +2,31 @@
 <html>
     <meta charset = "UTF-8"/>
     <title>Inheritance</title>
+    <script type="text/javascript" src="phaser.min.js"></script>
+
     
     <body>
         <script type = "text/javascript">
-            window.onload = function(){
-                var game = new Phaser.Game(800, 600,, Phaser.CANVAS, '');
+            
+//            window.onload = function(){
+                var game = new Phaser.Game(800, 600, Phaser.CANVAS, '', {preload: preload, create: create, update:update});
                 
-                game.state.add("boot", Game.Boot);
-                game.state.add("preload", Game.Preload);
-                game.state.add("MainMenu", Game.MainMenu);
-                game.state.add("Level1", Game.Level1);
+                function preload() {
+                    game.load.image("mainfloor", "mainfloor.png", 300, 300);
+                    game.load.spritesheet("princess", "princess.png", 32, 48);
+                }
+
+                function create() {
+                    game.physics.startSystem(Phaser.Physics.ARCADE);
+                    var floor = game.add.sprite(0, 0, 'mainfloor');
+                    floor.height = game.height;
+                    floor.width = game.width;
+
+                }
+
+                function update() {
+                }
                 
-                game.state.start("Boot");
-            }
         </script>
     </body>
 </html>
