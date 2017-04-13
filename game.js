@@ -1,18 +1,3 @@
-<!doctype html>
-<html>
-    <meta charset = "UTF-8"/>
-    <title>Inheritance</title>
-    <script type="text/javascript" src="phaser.min.js"></script>
-    
-    
-    <body>
-        <header>
-            <link rel="stylesheet" href="styles.css">
-            <h1> Inheritance </h1>
-        </header>
-        <script type = "text/javascript">
-                
-                var game = new Phaser.Game(650, 625, Phaser.CANVAS, '', {preload: preload, create: create, update:update});
                 var cursors;
                 var platforms;
                 var player;
@@ -91,6 +76,3 @@
                 }
             
                 
-        </script>
-    </body>
-</html>
