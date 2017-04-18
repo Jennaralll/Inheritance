@@ -1,22 +1,18 @@
-var Game = {};
+var boot = function() {};
 
-Game.Boot = =function(game){
+boot.prototype = {
+  preload: function() {
+    console.log('boot:preload');
+    // Loading bar
+    this.game.load.image('loading', 'assets/loading.png');
+  },
 
+  create: function() {
+    console.log('boot:create');
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.scale.pageAlignHorizontally = true;
+    this.scale.refresh();
+
+    this.game.state.start('Preload');
+  },
 };
-
-Game.Boot.prototype = {
-    init: function(){
-        
-        this.input.maxPointers = 1;
-        this.stage.disableVisibilityChange = true;
-    },
-    
-    preload: function(){
-        this.load.image('preload', 'assets/*insert lancy's titlepage*);
-        
-    },
-    
-    create:function(){
-        this.state.start("Preload");
-    }
-}
