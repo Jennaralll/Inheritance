@@ -4,7 +4,7 @@ boot.prototype = {
   preload: function() {
     console.log('boot:preload');
     // Loading bar
-    this.game.load.image('loading', 'assets/loading.png');
+    this.game.load.image('loading', 'assets/Loading_bar.png');
   },
 
   create: function() {

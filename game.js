@@ -1,16 +1,19 @@
-                var cursors;
-                var platforms;
-                var player;
+var theGame = function(game){
+    var cursors;
+    var platforms;
+    var player; 
+};
                 
+theGame.prototype = {
                 function preload() {
-                    game.load.image("bot1", "bot1.jpg");
-                    game.load.image("top1", "bg2.png");
+                    this.game.load.image("bot1", "bot1.jpg");
+                    this.game.load.image("top1", "bg2.png");
                     //princess x = 30+40; y = 50+40;
-                    game.load.spritesheet("princess", "princess.png", 32, 48);
-                }
+                    this.game.load.spritesheet("princess", "princess.png", 32, 48);
+                },
 
                 function create() {
-                    game.physics.startSystem(Phaser.Physics.ARCADE);
+                    this.game.physics.startSystem(Phaser.Physics.ARCADE);
                     var floor = game.add.sprite(0, 300, 'bot1');
                     
                     platforms = game.add.group();
@@ -22,7 +25,7 @@
                     floor.height = game.height;
                     floor.width = game.width;
                     //  We need to enable physics on the player
-                    game.physics.arcade.enable(player);
+                    this.game.physics.arcade.enable(player);
                     player.body.collideWorldBounds = true;
 
                     //  Our two animations, walking left and right.
@@ -34,7 +37,7 @@
                     
                     
 
-                }
+                },
 
                 function update() {
                     
@@ -74,5 +77,6 @@
                             player.frame = 4;
                         }
                 }
+}
             
                 
