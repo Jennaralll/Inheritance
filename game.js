@@ -14,7 +14,7 @@ theGame.prototype = {
 
                 create: function() {
                     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-                    this.game.world.setBounds(0, 0, 900, 1000);
+                    this.game.world.setBounds(0, 0, 900, 600);
                     var floor = this.game.add.sprite(0, 300, 'bot1');
                     
                     platforms = this.game.add.group();
@@ -23,7 +23,7 @@ theGame.prototype = {
                     bg.body.immovable = true;
                     
                     player = this.game.add.sprite(0, this.game.world.height - 50, "princess");
-                    player.anchor.setTo(0.5);
+                    //player.anchor.setTo(0.5);
                     floor.height = this.game.height;
                     floor.width = this.game.width;
                     //  We need to enable physics on the player
@@ -49,7 +49,7 @@ theGame.prototype = {
                             //  Move to the left
                             player.body.velocity.x = -150;
                             player.body.velocity.y = 0;
-                            this.game.camera.x -= 4;
+                            this.game.camera.x -= 1.25;
                             player.animations.play('left');
                         }
                         else if (cursors.right.isDown)
@@ -57,7 +57,7 @@ theGame.prototype = {
                             //  Move to the right
                             player.body.velocity.x = 150;
                             player.body.velocity.y = 0;
-                            this.game.camera.x += 4;
+                            this.game.camera.x += 1.25;
                             player.animations.play('right');
                         }
                         else if(cursors.up.isDown){
@@ -77,8 +77,6 @@ theGame.prototype = {
                             
                             player.body.velocity.x = 0;
                             player.body.velocity.y = 0;
-
-                            player.frame = 4;
                         }
                         console.log(this.game.world.width);
                         console.log("sprite position", player.body.position.x);
