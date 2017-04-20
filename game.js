@@ -14,6 +14,7 @@ theGame.prototype = {
 
                 create: function() {
                     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+                    this.game.world.setBounds(0, 0, 900, 1000);
                     var floor = this.game.add.sprite(0, 300, 'bot1');
                     
                     platforms = this.game.add.group();
@@ -48,7 +49,7 @@ theGame.prototype = {
                             //  Move to the left
                             player.body.velocity.x = -150;
                             player.body.velocity.y = 0;
-//                            this.game.camera.x -= 4;
+                            this.game.camera.x -= 4;
                             player.animations.play('left');
                         }
                         else if (cursors.right.isDown)
@@ -56,7 +57,7 @@ theGame.prototype = {
                             //  Move to the right
                             player.body.velocity.x = 150;
                             player.body.velocity.y = 0;
-//                            this.updategame.camera.x += 4;
+                            this.game.camera.x += 4;
                             player.animations.play('right');
                         }
                         else if(cursors.up.isDown){
@@ -84,7 +85,11 @@ theGame.prototype = {
                         if(player.body.position.x === this.game.world.width){
                             this.game.state.start("TheGame2");
                         }
+                },
+                render: function() {
+                    this.game.debug.cameraInfo(this.game.camera, 32, 32);
                 }
+
 }
             
                 
