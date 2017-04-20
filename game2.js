@@ -1,33 +1,32 @@
-var theGame = function(game){
+var theGame2 = function(game){
     var cursors;
     var platforms;
     var player; 
 };
                 
-theGame.prototype = {
+theGame2.prototype = {
                 preload: function() {
-                    this.game.load.image("bot1", "bot1.jpg");
-                    this.game.load.image("top1", "bg2.png");
+                    this.game.load.image("bot2", "bot5.jpg");
+                    this.game.load.image("top2", "bg4.png");
                     //princess x = 30+40; y = 50+40;
                     this.game.load.spritesheet("princess", "princess.png", 32, 48);
                 },
 
                 create: function() {
                     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-                    var floor = this.game.add.sprite(0, 300, 'bot1');
+                    var floor = this.game.add.sprite(0, 300, 'bot2');
                     
                     platforms = this.game.add.group();
                     platforms.enableBody = true;
-                    var bg = platforms.create(0, 0, 'top1');
+                    var bg = platforms.create(0, 0, 'top2');
                     bg.body.immovable = true;
                     
                     player = this.game.add.sprite(0, this.game.world.height - 50, "princess");
-                    player.anchor.setTo(0.5);
                     floor.height = this.game.height;
                     floor.width = this.game.width;
                     //  We need to enable physics on the player
                     this.game.physics.arcade.enable(player);
-//                    player.body.collideWorldBounds = true;
+                    player.body.collideWorldBounds = true;
 
                     //  Our two animations, walking left and right.
                     player.animations.add('left', [4, 5, 6, 7], 6, true);
@@ -42,13 +41,12 @@ theGame.prototype = {
 
                 update: function() {
                     
-//                        this.game.physics.arcade.collide(player, platforms);
+                        this.game.physics.arcade.collide(player, platforms);
                         if (cursors.left.isDown)
                         {
                             //  Move to the left
                             player.body.velocity.x = -150;
                             player.body.velocity.y = 0;
-//                            this.game.camera.x -= 4;
                             player.animations.play('left');
                         }
                         else if (cursors.right.isDown)
@@ -56,7 +54,6 @@ theGame.prototype = {
                             //  Move to the right
                             player.body.velocity.x = 150;
                             player.body.velocity.y = 0;
-//                            this.updategame.camera.x += 4;
                             player.animations.play('right');
                         }
                         else if(cursors.up.isDown){
@@ -79,12 +76,5 @@ theGame.prototype = {
 
                             player.frame = 4;
                         }
-                        console.log(this.game.world.width);
-                        console.log("sprite position", player.body.position.x);
-                        if(player.body.position.x === this.game.world.width){
-                            this.game.state.start("TheGame2");
-                        }
                 }
 }
-            
-                
