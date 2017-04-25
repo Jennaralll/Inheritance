@@ -6,7 +6,7 @@ var theGame = function(game){
                 
 theGame.prototype = {
                 preload: function() {
-                    this.game.load.image("bot1", "bot1.jpg");
+                    this.game.load.image("bot1", "bot2.jpg");
                     this.game.load.image("top1", "bg2.png");
                     //princess x = 30+40; y = 50+40;
                     this.game.load.spritesheet("princess", "princess.png", 32, 48);
@@ -23,12 +23,11 @@ theGame.prototype = {
                     bg.body.immovable = true;
                     
                     player = this.game.add.sprite(0, this.game.world.height - 50, "princess");
-                    //player.anchor.setTo(0.5);
+                    player.anchor.setTo(0.5);
                     floor.height = this.game.height;
-                    floor.width = this.game.width;
+                    //floor.width = this.game.width;
                     //  We need to enable physics on the player
-                    this.game.physics.arcade.enable(player);
-//                    player.body.collideWorldBounds = true;
+                    this.game.physics.arcade.enable(player);                    player.body.collideWorldBounds = true;
 
                     //  Our two animations, walking left and right.
                     player.animations.add('left', [4, 5, 6, 7], 6, true);
@@ -43,7 +42,10 @@ theGame.prototype = {
 
                 update: function() {
                     
-//                        this.game.physics.arcade.collide(player, platforms);
+                        this.game.physics.arcade.collide(player, platforms);
+                        player.fixedToCamera = true;
+                        player.cameraOffset.x = 0;
+                        player.cameraOffset.y = this.game.world.height -50;
                         if (cursors.left.isDown)
                         {
                             //  Move to the left
