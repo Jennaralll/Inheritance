@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html> 
+
+    <head> 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){ 
+$(".inside").hide(); 
+$(".label").click(function(){ 
+$(this).next(".inside").slideToggle('fast'); 
+}); 
+}); 
+</script>
+        <meta charset= "UTF-8"/> 
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+        <style> p{font-family: 'Nunito', sans-serif;}
+        --*/
+/* the thing that holds them together */
+.holder{
+    width:180px; /* change width of the whole thing here */
+    height:auto;
+    background:#fff; /* change the background color */
+    padding:5px;
+    font-size:10px; /* change font size */
+    border:1px solid #000; /* change border */
+    top:20px; /* change the position */
+    display: flex;
+    font-family: 'Nunito', sans-serif; /* change the font family */
+    position:relative; 
+    visibility:hidden;
+}
+/* the titles */
+.label{
+    font-weight:bold;
+    width:370px;
+    background:#f9deed; /*change the label background */
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:7px;
+    margin:5px;
+    display: block;
+    cursor:help;
+    border:1px solid #000; /* change border */
+}
+/* the inside text */
+.inside{
+    font-weight:none;
+    display:none; 
+    height:135px;
+    width:370px;
+    font-family: 'Nunito', sans-serif;
+    overflow-y:auto; 
+    /* if you want there to be a scrollbar just add height:NUMBERpx; nad under that add overflow-y:auto; */
+}
+
+/* you can edit anything from here on down */
+.inside a{
+    color:#000;
+    left:920px; 
+    text-transform:uppercase;
+    letter-spacing:1px;
+    text-decoration:underline;
+    font-style:italic;
+}
+.inside a:hover{
+    color:#bbb;
+}
+.inside i{
+    font-style:italic;
+    letter-spacing:1px;
+    background:#eee;
+}
+.inside b{
+    font-weight:bold;
+}
+.inside u{
+    text-decoration:underline;
+    text-transform:uppercase;
+}
+.inside s{
+    text-decoration:line-through;
+    font-size:smaller;
+}
+span.highlight {
+    background-color: #fcf4f8;
+}
+        </style>
+
+    </head>
+<body> 
+
+    <div class="holder" style="float:right;">
+<p class="label">ABOUT THE GAME</p> <!-- change titles here -->
+<div class="inside"> <!-- your text goes after this -->
+Inheritance is an RPG game that involves a sheltered princess named Abigail. She discovers the truth about her corrupt father, the king as she attempts to escape the castle she is lost in. In the process, Abigail learns that their land is in chaos and rebels are planning their attacks. She eventually comes to side with the rebels as she slowly learns the hidden secrets of her kingdom.
+</div>
+
+<p class="label">HOW TO PLAY</p> <!-- change titles here -->
+<div class="inside"> <!-- your text goes after this -->
+    <span class="highlight"> How do you move the avatar? </span> <br>
+You can move your avatar with the keyboard arrows. 
+<br> <br> 
+
+    <span class="highlight"> What can I do with my avatar?</span> <br>
+ You can interact with objects by pressing [ENTER]. This will cause certain events to happen. Some trigger dialogue events, others reveal certain objects in the castle, and so on. 
+<br> <br> 
+
+    <span class="highlight"> Can I save my game progress? </span> <br> 
+Unfortunately, you can’t.
+<br> <br> 
+
+</div>
+
+<p class="label">ABOUT THE CREATORS</p> <!-- change titles here -->
+<div class="inside"> <!-- your text goes after this -->
+    <span class="highlight"> What inspired the creators to make this game? </span> <br>
+ We frequently play RPG games, and decided to create one of our own to have the “insider” experience!
+<br> <br>
+
+    <span class="highlight"> What struggles did the creators have while making this game with our teammates? </span> <br> 
+We struggled with controlling the gravity of the game, as well as collaborating in real time with the code we write. Not only that, but we wanted a more plot centered game, but that was not possible with the limited time and experience with Phaser that we have.
+
+</div>
+</div>
+</body>
+
+
+</html>
