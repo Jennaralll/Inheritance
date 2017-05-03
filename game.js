@@ -4,7 +4,7 @@ var theGame = function(game){
     var cursors;
     var platforms;
     var player; 
-    var table;
+    var table, shelf, bookcase, piano;
     var text;
     var index = 0;
     var line = '';
@@ -26,8 +26,6 @@ var theGame = function(game){
     var textBox;
     var graphics;
     var next_button;
-
-   
 };
                  
 theGame.prototype = {
@@ -36,25 +34,25 @@ theGame.prototype = {
         this.game.load.image("top1", "bg2.png");
         //princess x = 30+40; y = 50+40;
         this.game.load.spritesheet("princess", "princess.png", 32, 48);
+        this.game.load.spritesheet("shelf", "shelf.png", 126, 109);
+        this.game.load.spritesheet("bookcase", "bookcase.png", 129, 109);
+        //this.game.load.spritesheet("piano", "transparent_piano.png", 32, 48);
         this.game.load.spritesheet("table", "table.png", 32, 48);
-        this.game.load.spritesheet("box", "box.png", 32, 48);
     },
 
     create: function() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.world.setBounds(0, 0, 900, 600);
+        this.game.world.setBounds(0, 0, 900, 300);
         var floor = this.game.add.sprite(0, 300, 'bot1');
         
         platforms = this.game.add.group();
         platforms.enableBody = true;
         var bg = platforms.create(0, 0, 'top1');
         bg.body.immovable = true;
-        
-        //table.body.immovable = true;
     
         
-        player = this.game.add.sprite(0, this.game.world.height - 100, "princess");
-        player.anchor.setTo(0.5);
+        player = this.game.add.sprite(170, this.game.world.height - 100, "princess");
+        //player.anchor.setTo(0.5);
         floor.height = this.game.height;
         //floor.width = this.game.width;
         //  We need to enable physics on the player
@@ -68,14 +66,18 @@ theGame.prototype = {
         player.animations.add("up", [12, 13, 14, 15], 14, true);
         cursors = this.game.input.keyboard.createCursorKeys();
         
-        table = this.game.add.sprite(100, 550, "table");
+        table = this.game.add.sprite(300, 550, "table");
         this.game.physics.enable(table);
         table.body.immovable = true;
-
-
-
-        // text = this.game.add.text(32,380,'', {font: "14pt Courier", fill: "#19cb65", stroke:"#119f4e", strokeThickness: 2});
-        // this.showDialogue = ;
+        shelf = this.game.add.sprite(0, 505, "shelf");
+        this.game.physics.enable(shelf);
+        shelf.body.immovable = true;
+        bookcase = this.game.add.sprite(500, 400, "bookcase");
+        this.game.physics.enable(bookcase);
+        bookcase.body.immovable = true;
+        // piano = this.game.add.sprite(500, 500, "piano");
+        // this.game.physics.enable(piano);
+        // piano.body.immovable = true;
     },
 
     update: function() {
@@ -84,17 +86,38 @@ theGame.prototype = {
             this.game.camera.follow(player);
             var graphics = this.game.add.graphics(20, 100);
             var text;
+            var xpos = Math.round(player.position.x);
             if(this.game.physics.arcade.collide(player,table,null,null,this)){
                 this.game.paused = true;
                 createTextBox(graphics);
-                text = this.game.add.text(35, 360, "hello ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+                var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+                text = this.game.add.text(xpos -140, 310, "Such delicious food out!\nI want to try everything. ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 1 });
+                text.destroy(); //not it
+                text = this.game.add.text(xpos -140, 310, "Ohhhhhh… My stomach, it hurts.\nMaybe I shouldn’t have tried all of them.",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 1 });
+                space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
+            }
+            if(this.game.physics.arcade.collide(player,shelf,null,null,this)){
+                this.game.paused = true;
+                createTextBox(graphics);
+                text = this.game.add.text(xpos - 140, 310, "What is the point of this shelf?\nTo put my shoes? ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
                 var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
             }
-//            if(this.game.physics.arcade.collide(player,table,null,null,this)){
-//                this.game.paused = true;
-//                interact(graphics, "hello");
-//            }
+            if(this.game.physics.arcade.collide(player,bookcase,null,null,this)){
+                this.game.paused = true;
+                createTextBox(graphics);
+                text = this.game.add.text(xpos-140, 310, "So many books!\nI wonder if Father actually read them. ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+                var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+                space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
+            }
+            // if(this.game.physics.arcade.collide(player,piano,null,null,this)){
+            //     this.game.paused = true;
+            //     createTextBox(graphics);
+            //     text = this.game.add.text(35, 310, "I haven’t played in ages! \nIt looks so old, yet so beautiful. \nShould I play it? \nMaybe not, I don’t want to bother and anger Father. ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+            //     var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+            //     space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
+            // }
+        
         
           
         
@@ -139,15 +162,18 @@ theGame.prototype = {
 
     render: function() {
         this.game.debug.cameraInfo(this.game.camera, 32, 32);
-        // this.game.debug.geom(this.floor,'rgba(0,0,255,0.5)');
     }
 }
 
 function createTextBox(graphics,text){
     // draw a rectangle
+    var xpos = Math.round(player.position.x);
+    var ypos = Math.round(player.position.y);
     graphics.lineStyle(2, 0x0000FF, 1);
     graphics.beginFill(0x222222, 1);
-    graphics.drawRect(0, 250, 450, 100);
+    console.log(player.position.x); //how to convert a float to an int?
+    console.log(xpos);
+    graphics.drawRect(xpos-170, 200, 350, 100);
     graphics.endFill();
 
     window.graphics = graphics;
@@ -169,12 +195,7 @@ function createTextBox(graphics,text){
 //}
 
 function interact(graphics,text1){
-    //this.showDialogue = true;
-//    createTextBox(graphics);
-//    var text;
-//    text = this.game.add.text(35, 360, text1,{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
-//    var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-//    space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
+    
 }
 //
 function actionOnClick(graphics, text){
