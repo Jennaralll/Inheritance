@@ -131,8 +131,6 @@ function createTextBox(graphics,text){
     var ypos = Math.round(player.position.y);
     graphics.lineStyle(2, 0x0000FF, 1);
     graphics.beginFill(0x222222, 1);
-    console.log(player.position.x); //how to convert a float to an int?
-    console.log(xpos);
     graphics.drawRect(xpos-170, 200, 350, 100);
     graphics.endFill();
 

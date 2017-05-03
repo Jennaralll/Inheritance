@@ -7,21 +7,6 @@ var theGame = function(game){
     var table, shelf, bookcase, piano;
     var text;
     var index = 0;
-    var line = '';
-    var content = [
-        " ",
-        "photon storm presents",
-        "a phaser production",
-        " ",
-        "Kern of Duty",
-        " ",
-        "directed by rich davey",
-        "rendering by mat groves",
-        "    ",
-        "03:45, November 4th, 2014",
-        "somewhere in the north pacific",
-        "mission control bravo ...",
-    ];
     var showDialogue = false;
     var textBox;
     var graphics;
@@ -91,22 +76,22 @@ theGame.prototype = {
                 this.game.paused = true;
                 createTextBox(graphics);
                 var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-                text = this.game.add.text(xpos -140, 310, "Such delicious food out!\nI want to try everything. ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 1 });
+                text = this.game.add.text(xpos -140, 310, "Such delicious food out!\nI want to try everything. ",{font: "10pt Courier", fill: "#DC9CD2", stroke: "#BF7FCE", strokeThickness: 0 });
                 text.destroy(); //not it
-                text = this.game.add.text(xpos -140, 310, "Ohhhhhh… My stomach, it hurts.\nMaybe I shouldn’t have tried all of them.",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 1 });
+                text = this.game.add.text(xpos -140, 310, "Ohhhhhh… My stomach, it hurts.\nMaybe I shouldn’t have tried all of them.",{font: "10pt Courier", fill: "#DC9CD2", stroke: "#BF7FCE", strokeThickness: 1 });
                 space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
             }
             if(this.game.physics.arcade.collide(player,shelf,null,null,this)){
                 this.game.paused = true;
                 createTextBox(graphics);
-                text = this.game.add.text(xpos - 140, 310, "What is the point of this shelf?\nTo put my shoes? ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+                text = this.game.add.text(xpos - 80, 310, "What is the point of this shelf?\nTo put my shoes? ",{font: "10pt Courier", fill: "#DC9CD2", stroke: "#BF7FCE", strokeThickness: 0 });
                 var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
             }
             if(this.game.physics.arcade.collide(player,bookcase,null,null,this)){
                 this.game.paused = true;
                 createTextBox(graphics);
-                text = this.game.add.text(xpos-140, 310, "So many books!\nI wonder if Father actually read them. ",{font: "10pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 0 });
+                text = this.game.add.text(xpos-140, 310, "So many books!\nI wonder if Father actually read them. ",{font: "10pt Courier", fill: "#DC9CD2", stroke: "#BF7FCE", strokeThickness: 0 });
                 var space = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
                 space.onDown.add(function () {   actionOnClick(graphics, text); this.game.paused = false;}, this);
             }
@@ -162,17 +147,18 @@ theGame.prototype = {
 
     render: function() {
         this.game.debug.cameraInfo(this.game.camera, 32, 32);
-    }
+    }, 
+
 }
+
 
 function createTextBox(graphics,text){
     // draw a rectangle
     var xpos = Math.round(player.position.x);
     var ypos = Math.round(player.position.y);
-    graphics.lineStyle(2, 0x0000FF, 1);
-    graphics.beginFill(0x222222, 1);
-    console.log(player.position.x); //how to convert a float to an int?
-    console.log(xpos);
+    graphics.lineStyle(0);
+    graphics.beginFill(0x333333, 1);
+    player.events.onInputOver.add(function() {  graphics.graphicsData[0].fillColor = 0x5B5B5B; }, this);
     graphics.drawRect(xpos-170, 200, 350, 100);
     graphics.endFill();
 
