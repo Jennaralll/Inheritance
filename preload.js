@@ -5,6 +5,7 @@ preload.prototype= {
         var loadingBg = this.add.sprite(0, 0, "loading");
         
         this.game.load.image("play", "Startbanner.png", 100, 100);
+        this.game.load.image("title", "Inheritancebanner.jpg", 100, 100);
         this.game.load.image("bot1", "bot2.jpg", 300, 300);
         this.game.load.image("top1", "bg2.png", 300, 300);
         this.game.load.image("top2", "bg_top.jpg", 300, 300);
