@@ -118,10 +118,6 @@ theGame2.prototype = {
                 player.body.velocity.x = 0;
                 player.body.velocity.y = 0;
             }
-    },
-
-    render: function() {
-        this.game.debug.cameraInfo(this.game.camera, 32, 32);
     }
 }
 
